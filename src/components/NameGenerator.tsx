@@ -4,7 +4,6 @@ import NameGeneratorContext, { NameGeneratorContextInterface } from "../NameGene
 
 import WordSelectForm from "./WordSelectForm";
 
-import { SelectedWordsInterface } from "../types/selectedWords";
 import GeneratorOutput from "./GeneratorOutput";
 import rootWordsObj from "../root_words/rootWords";
 import { EngWordsInterface } from "../interfaces/rootWordInterface";
@@ -20,12 +19,8 @@ const engWordsArr = Object.keys(rootWordsObj).map((category) => {
   }
 });
 
-// TODO: features
-// min roots for construction
-// max roots for construction
-
 const NameGenerator = () => {
-  const [selectedWords, setSelectedWords] = useState<SelectedWordsInterface>({});
+  const [selectedBits, setSelectedBits] = useState<string[]>([]);
   const [engWords, setEngWords] = useState<EngWordsInterface[]>(
     engWordsArr,
   );
@@ -33,12 +28,20 @@ const NameGenerator = () => {
     showFormattedWords: true,
   })
 
+  // TODO: Move these into own files
+  const prefixes = ["bry", "clau", "ash", "eve"];
+  const suffixes = ["lynn", "leigh", "ton", "lon"];
+
   const setNameGeneratorContext = (): NameGeneratorContextInterface => {
     return {
+      prefixes,
+      suffixes,
+      selectedBits,
+      setSelectedBits,
+
+      // OLD
       engWords,
       rootWordsObj,
-      selectedWords,
-      setSelectedWords,
       settings,
       setSettings,
     };

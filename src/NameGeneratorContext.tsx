@@ -4,10 +4,14 @@ import { EngWordsInterface, RootWordsObjInterface } from "./interfaces/rootWordI
 import { SettingsInterface } from "./interfaces/settingsInterfaces";
 
 export interface NameGeneratorContextInterface {
+  prefixes: string[];
+  suffixes: string[];
+  selectedBits: string[];
+  setSelectedBits: Dispatch<SetStateAction<string[]>>;
+
+  //
   engWords: EngWordsInterface[];
   rootWordsObj: RootWordsObjInterface;
-  selectedWords: SelectedWordsInterface;
-  setSelectedWords: Dispatch<SetStateAction<SelectedWordsInterface>>;
   settings: SettingsInterface;
   setSettings: Dispatch<SetStateAction<SettingsInterface>>;
 }

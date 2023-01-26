@@ -9,50 +9,44 @@ import generateNames from "../utils/generateNames";
 const GeneratorOutput = () => {
   const {
     rootWordsObj,
-    selectedWords,
+    selectedBits,
     settings: { showFormattedWords },
   } = useContext(NameGeneratorContext);
-  const [formattedWordStructures, setFormattedWordStructures] = useState(
-    formatSelectedWords(selectedWords, rootWordsObj),
-  );
-  const [generatedNames, setGeneratedNames] = useState<GeneratedName[]>([]);
-
-  useEffect(() => {
-    setFormattedWordStructures(
-      formatSelectedWords(selectedWords, rootWordsObj),
-    );
-  }, [rootWordsObj, selectedWords])
-
-  useEffect(() => {
-    setGeneratedNames(generateNames(formattedWordStructures));
-  }, [formattedWordStructures, selectedWords])
-
-  const formattedWordsStyle = {
-    display: showFormattedWords ? "flex" : "none",
-    height: showFormattedWords ? "20vh" : 0,
-  };
-
-  const generatedNamesStyle = {
-    height: showFormattedWords ? "65vh" : "90vh",
-  };
+  // const [formatted
 
   return (
     <>
-      <div
-        className="formatted-word-wrapper"
-        style={formattedWordsStyle}
-      >
-        {renderFormattedWords(formattedWordStructures)}
-      </div>
+      <h2>Bits!</h2>
 
-      <div
-        className="generated-names-wrapper"
-        style={generatedNamesStyle}
-      >
-        {renderGenerated(generatedNames)}
-      </div>
+      {
+        selectedBits.map((bit) => {
+          return (
+            <div>
+              {bit}
+            </div>
+          );
+        })
+      }
     </>
   );
+
+  // return (
+  //   <>
+  //     <div
+  //       className="formatted-word-wrapper"
+  //       style={formattedWordsStyle}
+  //     >
+  //       {renderFormattedWords(formattedWordStructures)}
+  //     </div>
+  //
+  //     <div
+  //       className="generated-names-wrapper"
+  //       style={generatedNamesStyle}
+  //     >
+  //       {renderGenerated(generatedNames)}
+  //     </div>
+  //   </>
+  // );
 };
 
 export default GeneratorOutput;

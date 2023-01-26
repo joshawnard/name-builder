@@ -1,83 +1,110 @@
 import React, { ChangeEvent, useContext } from 'react';
 import NameGeneratorContext from "../NameGeneratorContext";
-import rootWordsObj from "../root_words/rootWords";
 
 const WordSelectForm = (): JSX.Element => {
-  const { engWords, selectedWords, setSelectedWords } = useContext(NameGeneratorContext);
-  const flattenedSelectedWordList = Object.values(selectedWords).flat();
+  const { prefixes, suffixes, selectedBits, setSelectedBits } = useContext(NameGeneratorContext);
 
-  const handleCheck = (e: ChangeEvent<HTMLInputElement>, type: string, word: string) => {
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>, bit: string) => {
     const { currentTarget: { checked } } = e;
 
-    if (checked && selectedWords[type]) {
-      setSelectedWords({
-        ...selectedWords,
-        [type]: [
-          ...selectedWords[type],
-          word,
-        ],
-      });
-    } else if (checked) {
-      setSelectedWords({
-        ...selectedWords,
-        [type]: [
-          word,
-        ],
-      });
+    if (checked) {
+      setSelectedBits([...selectedBits, bit]);
     } else {
-      let words = selectedWords[type]
-      const index = words.indexOf(word, 0);
+      const index = selectedBits.indexOf(bit, 0);
 
       if (index > -1) {
-         words.splice(index, 1);
+         selectedBits.splice(index, 1);
       }
 
-      setSelectedWords({
-        ...selectedWords,
-        [type]: [...words],
-      });
+      setSelectedBits([...selectedBits]);
     }
   };
 
   return (
     <div>
       <div>
+        <h3>
+          Prefixes
+        </h3>
+
         {
-          engWords.map((engWordCategory) => {
-            return Object.entries(engWordCategory).map((foo) => {
-              const [category, wordObjArr] = foo;
+          prefixes.map((prefix) => {
+            return (
+              <div>
+                <label>
+                  <input
+                    checked={selectedBits.includes(prefix)}
+                    name={prefix}
+                    onChange={(e) => handleCheck(e, prefix)}
+                    type="checkbox"
+                  />
 
-              return (
-                <div key={category}>
-                  <h3>{category}</h3>
-
-                  {
-                    wordObjArr.map((word, index) => {
-                      if (word) {
-                        return (
-                          <div key={`word-${index}`}>
-                            <label>
-                              <input
-                                checked={flattenedSelectedWordList.includes(word)}
-                                name={word}
-                                onChange={(e) => handleCheck(e, category, word)}
-                                type="checkbox"
-                              />
-
-                              {word}
-                            </label>
-                          </div>
-                        );
-                      }
-
-                      return null;
-                    })
-                  }
-                </div>
-              );
-            })
+                  {prefix}
+                </label>
+              </div>
+            );
           })
         }
+
+        <h3>
+          Suffixes
+        </h3>
+
+        {
+          suffixes.map((suffix) => {
+            return (
+              <div>
+                <label>
+                  <input
+                    checked={selectedBits.includes(suffix)}
+                    name={suffix}
+                    onChange={(e) => handleCheck(e, suffix)}
+                    type="checkbox"
+                  />
+
+                  {suffix}
+                </label>
+              </div>
+            );
+          })
+        }
+
+        {/*{*/}
+        {/*  engWords.map((engWordCategory) => {*/}
+        {/*    return Object.entries(engWordCategory).map((foo) => {*/}
+        {/*      const [category, wordObjArr] = foo;*/}
+
+        {/*      return (*/}
+        {/*        <div key={category}>*/}
+        {/*          <h3>{category}</h3>*/}
+
+        {/*          {*/}
+        {/*            wordObjArr.map((word, index) => {*/}
+        {/*              if (word) {*/}
+        {/*                return (*/}
+        {/*                  <div key={`word-${index}`}>*/}
+        {/*                    <label>*/}
+        {/*                      <input*/}
+        {/*                        checked={flattenedSelectedWordList.includes(word)}*/}
+        {/*                        name={word}*/}
+        {/*                        onChange={(e) => handleCheck(e, category, word)}*/}
+        {/*                        type="checkbox"*/}
+        {/*                      />*/}
+
+        {/*                      {word}*/}
+        {/*                    </label>*/}
+        {/*                  </div>*/}
+        {/*                );*/}
+        {/*              }*/}
+
+        {/*              return null;*/}
+        {/*            })*/}
+        {/*          }*/}
+        {/*        </div>*/}
+        {/*      );*/}
+        {/*    })*/}
+        {/*  })*/}
+        {/*}*/}
       </div>
     </div>
   );

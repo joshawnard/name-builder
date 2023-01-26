@@ -4,7 +4,7 @@ import NameGeneratorContext from "../NameGeneratorContext";
 const Settings = () => {
   const {
     settings,
-    setSelectedWords,
+    setSelectedBits,
     setSettings,
   } = useContext(NameGeneratorContext);
 
@@ -18,7 +18,7 @@ const Settings = () => {
   };
 
   const handleClearAll = () => {
-    setSelectedWords({});
+    setSelectedBits([]);
   };
 
   const renderShowFormattedWordsSetting = () => {
@@ -57,7 +57,7 @@ const Settings = () => {
     <>
       <h2>Settings:</h2>
 
-      {renderShowFormattedWordsSetting()}
+      {/*{renderShowFormattedWordsSetting()}*/}
       {renderClearAll()}
     </>
   );
