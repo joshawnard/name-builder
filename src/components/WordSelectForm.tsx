@@ -28,7 +28,7 @@ const WordSelectForm = (): JSX.Element => {
         </h3>
 
         {
-          prefixes.map((prefix) => {
+          prefixes.sort().map((prefix) => {
             return (
               <div>
                 <label>
@@ -51,7 +51,7 @@ const WordSelectForm = (): JSX.Element => {
         </h3>
 
         {
-          suffixes.map((suffix) => {
+          suffixes.sort().map((suffix) => {
             return (
               <div>
                 <label>
