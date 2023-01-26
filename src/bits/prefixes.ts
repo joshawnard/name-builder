@@ -1,3 +1,8 @@
-const prefixes = ["bry", "clau", "ash", "eve"];
+const prefixes = [
+  "ash",
+  "bry",
+  "clau",
+  "eve",
+];
 
 export default prefixes;

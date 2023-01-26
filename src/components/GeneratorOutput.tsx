@@ -9,16 +9,11 @@ const GeneratorOutput = () => {
     // settings: { showFormattedWords },
   } = useContext(NameGeneratorContext);
 
-  // const layout = [
-  //   { i: "a", x: 0, y: 0, w: 1, h: 2, static: true },
-  //   { i: "b", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-  //   { i: "c", x: 4, y: 0, w: 1, h: 2 }
-  // ];
   const layout = useMemo(() => {
     return selectedBits.map((bit, index) => {
       return {
         i: bit,
-        x: 1,
+        x: 0,
         y: index+1,
         w: bit.length,
         h: 1,
@@ -38,7 +33,7 @@ const GeneratorOutput = () => {
         isResizable={false}
         layout={layout}
         margin={[0, 0]}
-        rowHeight={30}
+        rowHeight={50}
         width={800}
       >
         {
@@ -67,24 +62,6 @@ const GeneratorOutput = () => {
       </GridLayout>
     </>
   );
-
-  // return (
-  //   <>
-  //     <div
-  //       className="formatted-word-wrapper"
-  //       style={formattedWordsStyle}
-  //     >
-  //       {renderFormattedWords(formattedWordStructures)}
-  //     </div>
-  //
-  //     <div
-  //       className="generated-names-wrapper"
-  //       style={generatedNamesStyle}
-  //     >
-  //       {renderGenerated(generatedNames)}
-  //     </div>
-  //   </>
-  // );
 };
 
 export default GeneratorOutput;

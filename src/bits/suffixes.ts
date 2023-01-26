@@ -1,3 +1,8 @@
-const suffixes = ["lynn", "leigh", "ton", "lon"];
+const suffixes = [
+  "leigh",
+  "lon",
+  "lynn",
+  "ton",
+];
 
 export default suffixes;
