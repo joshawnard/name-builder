@@ -1,49 +1,69 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import GridLayout from "react-grid-layout";
 
 import NameGeneratorContext from "../NameGeneratorContext";
-import formatSelectedWords from "../utils/formatSelectedWords";
-import { GeneratedName } from "../interfaces/rootWordInterface";
-import renderFormattedWords from '../utils/renderFormattedWords';
-import renderGenerated from "../utils/renderGeneratedNames";
-import generateNames from "../utils/generateNames";
 
 const GeneratorOutput = () => {
   const {
-    rootWordsObj,
     selectedBits,
-    settings: { showFormattedWords },
+    // settings: { showFormattedWords },
   } = useContext(NameGeneratorContext);
-  const layout = [
-    { i: "a", x: 0, y: 0, w: 1, h: 2, static: true },
-    { i: "b", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-    { i: "c", x: 4, y: 0, w: 1, h: 2 }
-  ];
+
+  // const layout = [
+  //   { i: "a", x: 0, y: 0, w: 1, h: 2, static: true },
+  //   { i: "b", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
+  //   { i: "c", x: 4, y: 0, w: 1, h: 2 }
+  // ];
+  const layout = useMemo(() => {
+    return selectedBits.map((bit, index) => {
+      return {
+        i: bit,
+        x: 1,
+        y: index+1,
+        w: bit.length,
+        h: 1,
+        // minW: 2,
+        // maxW: 4,
+      };
+    });
+  }, [selectedBits]);
 
   return (
     <>
       <h2>Bits!</h2>
 
-      {
-        selectedBits.map((bit) => {
-          return (
-            <div>
-              {bit}
-            </div>
-          );
-        })
-      }
-
       <GridLayout
         className="layout"
+        cols={36}
+        isResizable={false}
         layout={layout}
-        cols={12}
+        margin={[0, 0]}
         rowHeight={30}
-        width={1200}
+        width={800}
       >
-        <div key="a">a</div>
-        <div key="b">b</div>
-        <div key="c">c</div>
+        {
+          selectedBits.map((bit) => {
+            return (
+              <div
+                className="bit"
+                key={bit}
+              >
+                {
+                  bit.split("").map((char, index) => {
+                    return (
+                      <div
+                        className="bit-char"
+                        style={{ width: `${100 / bit.length}%` }}
+                      >
+                        {char}
+                      </div>
+                    );
+                  })
+                }
+              </div>
+            );
+          })
+        }
       </GridLayout>
     </>
   );

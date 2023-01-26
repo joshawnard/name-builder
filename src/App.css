@@ -97,3 +97,19 @@
   padding: 1rem;
   text-align: left;
 }
+
+.bit {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.bit-char {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.bit-char:first-child {
+  text-transform: capitalize;
+}
