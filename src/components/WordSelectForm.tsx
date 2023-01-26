@@ -2,7 +2,7 @@ import React, { ChangeEvent, useContext } from 'react';
 import NameGeneratorContext from "../NameGeneratorContext";
 
 const WordSelectForm = (): JSX.Element => {
-  const { prefixes, suffixes, selectedBits, setSelectedBits } = useContext(NameGeneratorContext);
+  const { connections, prefixes, suffixes, selectedBits, setSelectedBits } = useContext(NameGeneratorContext);
 
   const handleCheck = (e: ChangeEvent<HTMLInputElement>, bit: string) => {
     const { currentTarget: { checked } } = e;
@@ -63,6 +63,29 @@ const WordSelectForm = (): JSX.Element => {
                   />
 
                   {suffix}
+                </label>
+              </div>
+            );
+          })
+        }
+
+        <h3>
+          Connections
+        </h3>
+
+        {
+          connections.sort().map((connection) => {
+            return (
+              <div>
+                <label>
+                  <input
+                    checked={selectedBits.includes(connection)}
+                    name={connection}
+                    onChange={(e) => handleCheck(e, connection)}
+                    type="checkbox"
+                  />
+
+                  {connection}
                 </label>
               </div>
             );

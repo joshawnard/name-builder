@@ -2,6 +2,7 @@ import { createContext, Dispatch, SetStateAction } from "react";
 import { SettingsInterface } from "./interfaces/settingsInterfaces";
 
 export interface NameGeneratorContextInterface {
+  connections: string[];
   prefixes: string[];
   suffixes: string[];
   selectedBits: string[];

@@ -12,6 +12,7 @@ import "/node_modules/react-grid-layout/css/styles.css"
 import "/node_modules/react-resizable/css/styles.css"
 import prefixes from "../bits/prefixes";
 import suffixes from "../bits/suffixes";
+import connections from "../bits/connections";
 
 const NameGenerator = () => {
   const [selectedBits, setSelectedBits] = useState<string[]>([]);
@@ -21,6 +22,7 @@ const NameGenerator = () => {
 
   const setNameGeneratorContext = (): NameGeneratorContextInterface => {
     return {
+      connections,
       prefixes,
       suffixes,
       selectedBits,

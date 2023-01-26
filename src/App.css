@@ -111,5 +111,5 @@
 }
 
 .bit-char:first-child {
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
 }
