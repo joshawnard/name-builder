@@ -1,6 +1,4 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { SelectedWordsInterface } from "./types/selectedWords";
-import { EngWordsInterface, RootWordsObjInterface } from "./interfaces/rootWordInterface";
 import { SettingsInterface } from "./interfaces/settingsInterfaces";
 
 export interface NameGeneratorContextInterface {
@@ -9,9 +7,6 @@ export interface NameGeneratorContextInterface {
   selectedBits: string[];
   setSelectedBits: Dispatch<SetStateAction<string[]>>;
 
-  //
-  engWords: EngWordsInterface[];
-  rootWordsObj: RootWordsObjInterface;
   settings: SettingsInterface;
   setSettings: Dispatch<SetStateAction<SettingsInterface>>;
 }
