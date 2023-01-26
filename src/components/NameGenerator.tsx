@@ -11,6 +11,9 @@ import { SettingsInterface } from "../interfaces/settingsInterfaces";
 import Settings from "./Settings";
 import parseEnglishString from "../utils/parseEnglishString";
 
+import "/node_modules/react-grid-layout/css/styles.css"
+import "/node_modules/react-resizable/css/styles.css"
+
 const engWordsArr = Object.keys(rootWordsObj).map((category) => {
   return {
     [category]: rootWordsObj[category].map((rootWordObj) => {
